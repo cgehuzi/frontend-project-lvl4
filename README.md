@@ -1,4 +1,4 @@
-# Chat (Slack)
+# Slack Chat
 
 Создано в рамках учебного проекта [Чат (Slack)](https://ru.hexlet.io/programs/frontend/projects/12) от [Хекслет](https://ru.hexlet.io/).
 
@@ -19,4 +19,4 @@ $ make start        # запуск локального сервера
 
 ## Live Demo
 
-[https://cgehuzi-frontend-project-lvl4.herokuapp.com/](https://cgehuzi-frontend-project-lvl4.herokuapp.com/)
+[https://frontend-project-lvl4-cgehuzi.herokuapp.com/](https://frontend-project-lvl4-cgehuzi.herokuapp.com/)
