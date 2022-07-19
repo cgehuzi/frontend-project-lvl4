@@ -7,19 +7,19 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(localStorage.getItem('user'));
   const navigate = useNavigate();
 
-  const logIn = (authUser) => {
-    localStorage.setItem('user', JSON.stringify(authUser));
-    setUser(authUser);
+  const signIn = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    setUser(user);
     navigate(routes.mainPagePath());
   };
 
-  const logOut = () => {
+  const signOut = () => {
     localStorage.removeItem('user');
     setUser(null);
     navigate(routes.mainPagePath());
   };
 
-  return <AuthContext.Provider value={{ user, logIn, logOut }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

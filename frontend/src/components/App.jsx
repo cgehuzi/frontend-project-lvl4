@@ -1,21 +1,21 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import routes from '../routes';
-import LoginPage from './LoginPage';
+import Login from './Login';
 import NotFound from './NotFoundPage';
-import SignupPage from './SignupPage';
+import Registration from './Registration';
 import AuthProvider from './AuthProvider';
-import ChatPage from './ChatPage';
+import Main from './Main';
 import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
 
 const LoginRedirect = () => {
   const { user } = useContext(AuthContext);
-  return user ? <Outlet /> : <Navigate to={routes.loginPagePath()} />;
+  return !user ? <Navigate to={routes.loginPagePath()} /> : <Outlet />;
 };
 
 const MainRedirect = () => {
   const { user } = useContext(AuthContext);
-  return !user ? <Outlet /> : <Navigate to={routes.mainPagePath()} />;
+  return user ? <Navigate to={routes.mainPagePath()} /> : <Outlet />;
 };
 
 const App = () => {
@@ -24,13 +24,13 @@ const App = () => {
       <AuthProvider>
         <Routes>
           <Route path={routes.mainPagePath()} element={<LoginRedirect />}>
-            <Route path="" element={<ChatPage />} />
+            <Route path="" element={<Main />} />
           </Route>
           <Route path={routes.loginPagePath()} element={<MainRedirect />}>
-            <Route path="" element={<LoginPage />} />
+            <Route path="" element={<Login />} />
           </Route>
           <Route path={routes.signupPagePath()} element={<MainRedirect />}>
-            <Route path="" element={<SignupPage />} />
+            <Route path="" element={<Registration />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

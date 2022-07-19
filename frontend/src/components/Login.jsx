@@ -8,8 +8,8 @@ import { Form, Card, Button, FloatingLabel, Alert } from 'react-bootstrap';
 import AuthContext from '../contexts/AuthContext';
 import routes from '../routes';
 
-const LoginPage = () => {
-  const { logIn } = useContext(AuthContext);
+const Login = () => {
+  const { singIn } = useContext(AuthContext);
 
   const [isInvalid, setInvalid] = useState(false);
   const [error, setError] = useState(null);
@@ -33,7 +33,7 @@ const LoginPage = () => {
 
       try {
         const response = await axios.post(routes.loginPath(), { username, password });
-        logIn(response.data);
+        singIn(response.data);
         setDisabled(false);
       } catch (error) {
         console.error(error);
@@ -105,4 +105,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
