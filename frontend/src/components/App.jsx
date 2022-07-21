@@ -22,7 +22,16 @@ const MainRedirect = () => {
   return user ? <Navigate to={routes.mainPagePath()} /> : <Outlet />;
 };
 
-const App = () => {
+const Main = () => (
+  <ApiProvider>
+    <Provider store={store}>
+      <Chat />
+      <AppModal />
+    </Provider>
+  </ApiProvider>
+);
+
+const App = ({ socket }) => {
   return (
     <div className="container-fluid h-100">
       <div className="d-flex flex-column h-100">
