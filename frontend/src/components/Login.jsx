@@ -1,24 +1,21 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
-import { useEffect } from 'react';
-import { useContext } from 'react';
-import { useRef } from 'react';
-import { useState } from 'react';
+import { useEffect, useContext, useRef, useState } from 'react';
 import { Form, Card, Button, FloatingLabel, Alert } from 'react-bootstrap';
 import AuthContext from '../contexts/AuthContext';
 import routes from '../routes';
 
 const Login = () => {
-  const { singIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
 
   const [isInvalid, setInvalid] = useState(false);
   const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
 
-  const invalidFocusInput = useRef(null);
+  const usernameInputRef = useRef(null);
 
   useEffect(() => {
-    invalidFocusInput.current.focus();
+    usernameInputRef.current.focus();
   }, []);
 
   const formik = useFormik({
@@ -33,7 +30,7 @@ const Login = () => {
 
       try {
         const response = await axios.post(routes.loginPath(), { username, password });
-        singIn(response.data);
+        signIn(response.data);
         setDisabled(false);
       } catch (error) {
         console.error(error);
@@ -48,7 +45,7 @@ const Login = () => {
           setInvalid(true);
           setError('Invalid username or password');
           setTimeout(() => {
-            invalidFocusInput.current.select();
+            usernameInputRef.current.select();
           });
           return;
         }
@@ -74,7 +71,7 @@ const Login = () => {
                   value={formik.values.username}
                   isInvalid={isInvalid}
                   disabled={isDisabled}
-                  ref={invalidFocusInput}
+                  ref={usernameInputRef}
                   required
                 />
               </FloatingLabel>

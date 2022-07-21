@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../contexts/AuthContext';
+import AuthContext from './AuthContext';
 import routes from '../routes';
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(localStorage.getItem('user'));
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const signIn = (user) => {
@@ -18,6 +19,11 @@ const AuthProvider = ({ children }) => {
     setUser(null);
     navigate(routes.mainPagePath());
   };
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) setUser(JSON.parse(user));
+  }, []);
 
   return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
 };
