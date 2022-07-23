@@ -1,11 +1,14 @@
 import { useContext, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
-import { channelsSelectors } from '../slices/channelsSlice';
+import { batch, useDispatch, useSelector } from 'react-redux';
+import { channelsActions, channelsSelectors } from '../slices/channelsSlice';
 import ApiContext from '../contexts/ApiContext';
+import { modalActions } from '../slices/modalSlice';
 
 const RemoveChannel = ({ handleClose, channelId }) => {
+  const dispatch = useDispatch();
   const channel = useSelector((state) => channelsSelectors.selectById(state, channelId));
+  const defaultChannelId = useSelector((state) => state.channels.defaultChannelId);
 
   const { removeChannel } = useContext(ApiContext);
 
@@ -17,6 +20,7 @@ const RemoveChannel = ({ handleClose, channelId }) => {
 
     try {
       await removeChannel({ id: channelId });
+      dispatch(modalActions.closeModal());
     } catch (error) {
       console.error(error);
       setError(error.message);
