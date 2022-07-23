@@ -22,7 +22,7 @@ const ChatMain = ({ channel, messages }) => {
   });
 
   return (
-    <div className="chat__main col p-0">
+    <>
       <div className="chat__main-header px-4 border-bottom bg-white">
         <strong className="h5 m-0 fw-bold"># {channel?.name}</strong>
         <span className="text-muted ms-3">{messages.length} messages</span>
@@ -33,10 +33,7 @@ const ChatMain = ({ channel, messages }) => {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <div className="chat__main-footer p-4 bg-white border-top">
-        <ChatForm channelId={channel?.id} />
-      </div>
-    </div>
+    </>
   );
 };
 export default ChatMain;

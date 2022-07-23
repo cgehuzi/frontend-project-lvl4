@@ -12,11 +12,10 @@ const AppModal = () => {
   const handleClose = () => dispatch(modalActions.closeModal());
 
   const ModalTypeComponent = modals[type] ?? null;
-  if (!ModalTypeComponent) return null;
 
   return (
     <Modal show={isOpened} onHide={handleClose} centered>
-      <ModalTypeComponent handleClose={handleClose} {...props} />
+      {ModalTypeComponent && <ModalTypeComponent handleClose={handleClose} {...props} />}
     </Modal>
   );
 };
