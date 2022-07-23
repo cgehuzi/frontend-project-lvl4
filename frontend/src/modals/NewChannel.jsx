@@ -4,10 +4,8 @@ import { useContext } from 'react';
 import { useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import ApiContext from '../contexts/ApiContext';
-import AuthContext from '../contexts/AuthContext';
 
 const NewChannel = ({ handleClose }) => {
-  const { user } = useContext(AuthContext);
   const { newChannel } = useContext(ApiContext);
   const nameInputRef = useRef(null);
 
