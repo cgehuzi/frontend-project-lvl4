@@ -18,14 +18,14 @@ const ChatForm = ({ channelId }) => {
 
   const formik = useFormik({
     initialValues: {
-      message: '',
+      body: '',
     },
-    onSubmit: async ({ message }) => {
+    onSubmit: async ({ body }) => {
       setDisabled(true);
 
       try {
         await newMessage({
-          body: message,
+          body,
           channelId,
           username: user?.username,
         });
@@ -43,10 +43,10 @@ const ChatForm = ({ channelId }) => {
       <Form.Control
         className="fs-6 me-3"
         size="lg"
-        name="message"
+        name="body"
         placeholder="Type message ..."
         onChange={formik.handleChange}
-        value={formik.values.message}
+        value={formik.values.body}
         disabled={isDisabled}
         ref={messageInputRef}
         required
