@@ -40,7 +40,7 @@ const RenameChannel = ({ handleClose, channelId }) => {
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>Rename Channel {channelId}</Modal.Title>
+        <Modal.Title>Rename channel</Modal.Title>
       </Modal.Header>
       <Form onSubmit={formik.handleSubmit}>
         <Modal.Body>

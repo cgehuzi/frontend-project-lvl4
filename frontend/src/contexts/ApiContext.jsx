@@ -33,6 +33,7 @@ socket.on('renameChannel', (payload) => {
 export default createContext({
   socket,
   newMessage: () => {},
+  getChannelYupSchema: () => {},
   newChannel: () => {},
   removeChannel: () => {},
   renameChannel: () => {},

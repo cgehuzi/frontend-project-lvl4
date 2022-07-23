@@ -28,7 +28,7 @@ const RemoveChannel = ({ handleClose, channelId }) => {
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>Remove Channel</Modal.Title>
+        <Modal.Title>Remove channel</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p className="m-0">
