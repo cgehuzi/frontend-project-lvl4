@@ -27,14 +27,13 @@ const ChatForm = ({ channelId }) => {
 
       try {
         await newMessage(apiMessage);
-        messageInputRef.current.value = '';
+        formik.resetForm();
       } catch (error) {
         console.error(error);
         setError(error.message);
       }
 
       setDisabled(false);
-      formik.resetForm();
     },
   });
   return (

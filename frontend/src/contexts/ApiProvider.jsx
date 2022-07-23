@@ -23,8 +23,9 @@ const ApiProvider = ({ children }) => {
     });
 
   const newMessage = (message) => sendSocketEmit('newMessage', message);
+  const newChannel = (channel) => sendSocketEmit('newChannel', channel);
 
-  return <ApiContext.Provider value={{ newMessage }}>{children}</ApiContext.Provider>;
+  return <ApiContext.Provider value={{ newMessage, newChannel }}>{children}</ApiContext.Provider>;
 };
 
 export default ApiProvider;
