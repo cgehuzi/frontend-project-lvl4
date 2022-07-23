@@ -4,10 +4,10 @@ import ChatForm from './ChatForm';
 
 const Message = ({ username, body }) => (
   <div className="chat__message mb-3">
-    <div className="chat__message-avatar me-2 bg-dark text-white fw-light">
+    <small className="chat__message-avatar me-2 bg-secondary rounded text-white fw-light text-uppercase">
       {Array.from(username)[0]}
-    </div>
-    <div className="chat__message-body ps-1">
+    </small>
+    <div className="chat__message-body ps-2">
       <small className="d-block lh-1 fw-bold">{username}</small>
       <small className="d-block text-muted">{body}</small>
     </div>
