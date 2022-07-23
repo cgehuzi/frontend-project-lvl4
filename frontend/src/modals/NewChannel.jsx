@@ -51,7 +51,7 @@ const NewChannel = ({ handleClose }) => {
               onChange={formik.handleChange}
               disabled={isDisabled}
               required
-            ></Form.Control>
+            />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

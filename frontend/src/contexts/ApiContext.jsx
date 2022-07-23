@@ -24,9 +24,16 @@ socket.on('removeChannel', (payload) => {
   store.dispatch(channelsActions.removeChannel(payload));
 });
 
+socket.on('renameChannel', (payload) => {
+  const { id } = payload;
+  if (!id) return;
+  store.dispatch(channelsActions.renameChannel(payload));
+});
+
 export default createContext({
   socket,
   newMessage: () => {},
   newChannel: () => {},
   removeChannel: () => {},
+  renameChannel: () => {},
 });

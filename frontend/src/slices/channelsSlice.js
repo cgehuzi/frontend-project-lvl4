@@ -19,6 +19,10 @@ const channelsSlice = createSlice({
       const { id } = action.payload;
       channelsAdapter.removeOne(state, id);
     },
+    renameChannel: (state, action) => {
+      const { id, name } = action.payload;
+      channelsAdapter.updateOne(state, { id, changes: { name } });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loadData.fulfilled, (state, action) => {
