@@ -12,10 +12,12 @@ const channelsSlice = createSlice({
       state.currentChannelId = action.payload;
     },
     newChannel: (state, action) => {
-      channelsAdapter.addOne(state, action.payload);
+      const channel = action.payload;
+      channelsAdapter.addOne(state, channel);
     },
     removeChannel: (state, action) => {
-      channelsAdapter.removeOne(state, action.payload);
+      const { id } = action.payload;
+      channelsAdapter.removeOne(state, id);
     },
   },
   extraReducers: (builder) => {

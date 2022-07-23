@@ -21,12 +21,14 @@ const ChatForm = ({ channelId }) => {
       message: '',
     },
     onSubmit: async ({ message }) => {
-      const apiMessage = { body: message, channelId, username: user?.username };
-
       setDisabled(true);
 
       try {
-        await newMessage(apiMessage);
+        await newMessage({
+          body: message,
+          channelId,
+          username: user?.username,
+        });
         formik.resetForm();
       } catch (error) {
         console.error(error);

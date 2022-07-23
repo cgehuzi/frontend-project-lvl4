@@ -24,7 +24,7 @@ const ApiProvider = ({ children }) => {
 
   const newMessage = (message) => sendSocketEmit('newMessage', message);
   const newChannel = (channel) => sendSocketEmit('newChannel', channel);
-  const removeChannel = (id) => sendSocketEmit('removeChannel', { id });
+  const removeChannel = ({ id }) => sendSocketEmit('removeChannel', { id });
 
   return (
     <ApiContext.Provider

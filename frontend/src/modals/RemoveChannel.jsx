@@ -16,7 +16,7 @@ const RemoveChannel = ({ handleClose, channelId }) => {
     setDisabled(true);
 
     try {
-      await removeChannel(channelId);
+      await removeChannel({ id: channelId });
     } catch (error) {
       console.error(error);
       setError(error.message);

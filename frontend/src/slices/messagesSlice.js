@@ -9,7 +9,8 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     newMessage: (state, action) => {
-      messagesAdapter.addOne(state, action.payload);
+      const message = action.payload;
+      messagesAdapter.addOne(state, message);
     },
   },
   extraReducers: (builder) => {

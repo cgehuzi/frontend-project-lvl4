@@ -21,7 +21,7 @@ socket.on('newChannel', (payload) => {
 socket.on('removeChannel', (payload) => {
   const { id } = payload;
   if (!id) return;
-  store.dispatch(channelsActions.removeChannel(id));
+  store.dispatch(channelsActions.removeChannel(payload));
 });
 
 export default createContext({

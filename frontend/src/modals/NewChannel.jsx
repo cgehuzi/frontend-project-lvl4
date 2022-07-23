@@ -21,12 +21,10 @@ const NewChannel = ({ handleClose }) => {
       name: '',
     },
     onSubmit: async ({ name }) => {
-      const apiChannel = { name };
-
       setDisabled(true);
 
       try {
-        await newChannel(apiChannel);
+        await newChannel({ name });
         formik.resetForm();
       } catch (error) {
         console.error(error);
