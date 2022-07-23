@@ -19,7 +19,7 @@ const NewChannel = ({ handleClose }) => {
 
   useEffect(() => {
     nameInputRef.current.focus();
-  });
+  }, []);
 
   const channels = useSelector(channelsSelectors.selectAll);
   const validationSchema = getChannelYupSchema(channels);
@@ -29,7 +29,6 @@ const NewChannel = ({ handleClose }) => {
       name: '',
     },
     validationSchema,
-    validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async ({ name }) => {
       setDisabled(true);
@@ -63,9 +62,11 @@ const NewChannel = ({ handleClose }) => {
               type="text"
               ref={nameInputRef}
               value={formik.values.name}
+              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               disabled={isDisabled}
-              isInvalid={formik.errors.name}
+              isInvalid={formik.errors.name && formik.touched.name}
+              required
             />
             <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
           </Form.Group>

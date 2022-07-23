@@ -30,6 +30,9 @@ const ChatForm = ({ channelId }) => {
           username: user?.username,
         });
         formik.resetForm();
+        setTimeout(() => {
+          messageInputRef.current.focus();
+        });
       } catch (error) {
         console.error(error);
         setError(error.message);

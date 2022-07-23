@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { useEffect, useContext, useRef, useState } from 'react';
-import { Form, Card, Button, FloatingLabel, Alert } from 'react-bootstrap';
+import { Form, Card, Button, Alert } from 'react-bootstrap';
 import AuthContext from '../contexts/AuthContext';
 import routes from '../routes';
+import * as yup from 'yup';
+import cn from 'classnames';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -23,6 +25,11 @@ const Login = () => {
       username: '',
       password: '',
     },
+    validateOnChange: false,
+    validationSchema: yup.object().shape({
+      username: yup.string().trim().required(),
+      password: yup.string().trim().required(),
+    }),
     onSubmit: async ({ username, password }) => {
       setInvalid(false);
       setError(null);
@@ -63,29 +70,47 @@ const Login = () => {
             <Form onSubmit={formik.handleSubmit}>
               <h1 className="h2 text-center mb-4">Log In</h1>
               {error && <Alert variant="danger">{error}</Alert>}
-              <FloatingLabel className="mb-3" controlId="username" label="User name">
-                <Form.Control
-                  type="text"
-                  placeholder="User name"
-                  onChange={formik.handleChange}
-                  value={formik.values.username}
-                  isInvalid={isInvalid}
-                  disabled={isDisabled}
-                  ref={usernameInputRef}
-                  required
-                />
-              </FloatingLabel>
-              <FloatingLabel className="mb-3" controlId="password" label="Password">
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                  isInvalid={isInvalid}
-                  disabled={isDisabled}
-                  required
-                />
-              </FloatingLabel>
+              <Form.Group className="mb-3">
+                <Form.FloatingLabel controlId="username" label="User name">
+                  <Form.Control
+                    type="text"
+                    placeholder="User name"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.username}
+                    isInvalid={isInvalid || (formik.touched.username && formik.errors.username)}
+                    disabled={isDisabled}
+                    ref={usernameInputRef}
+                    required
+                  />
+                </Form.FloatingLabel>
+                <Form.Control.Feedback
+                  type="invalid"
+                  className={cn({ 'd-block': formik.touched.username && formik.errors.username })}
+                >
+                  {formik.errors.username}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.FloatingLabel controlId="password" label="Password">
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values.password}
+                    isInvalid={isInvalid || (formik.touched.password && formik.errors.password)}
+                    disabled={isDisabled}
+                    required
+                  />
+                </Form.FloatingLabel>
+                <Form.Control.Feedback
+                  type="invalid"
+                  className={cn({ 'd-block': formik.touched.password && formik.errors.password })}
+                >
+                  {formik.errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
               <Button className="w-100" variant="primary" type="submit" disabled={isDisabled}>
                 Log In
               </Button>

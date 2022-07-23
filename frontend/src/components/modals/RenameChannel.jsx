@@ -33,7 +33,6 @@ const RenameChannel = ({ handleClose, channelId }) => {
       name: channel?.name,
     },
     validationSchema,
-    validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async ({ name }) => {
       setDisabled(true);
@@ -62,9 +61,11 @@ const RenameChannel = ({ handleClose, channelId }) => {
               type="text"
               ref={nameInputRef}
               value={formik.values.name}
+              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               disabled={isDisabled}
-              isInvalid={formik.errors.name}
+              isInvalid={formik.errors.name && formik.touched.name}
+              required
             />
             <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
           </Form.Group>
