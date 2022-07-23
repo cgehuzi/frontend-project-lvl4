@@ -1,20 +1,24 @@
 import { useFormik } from 'formik';
-import { useEffect, useState } from 'react';
-import { useContext } from 'react';
-import { useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { batch, useDispatch, useSelector } from 'react-redux';
-import ApiContext from '../contexts/ApiContext';
-import { channelsActions, channelsSelectors } from '../slices/channelsSlice';
-import { modalActions } from '../slices/modalSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import ApiContext from '../../contexts/ApiContext';
+import { channelsSelectors } from '../../slices/channelsSlice';
+import { modalActions } from '../../slices/modalSlice';
 
-const NewChannel = ({ handleClose }) => {
+const RenameChannel = ({ handleClose, channelId }) => {
   const dispatch = useDispatch();
-  const { newChannel, getChannelYupSchema } = useContext(ApiContext);
+  const channel = useSelector((state) => channelsSelectors.selectById(state, channelId));
+
+  const { renameChannel, getChannelYupSchema } = useContext(ApiContext);
   const nameInputRef = useRef(null);
 
   const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    nameInputRef.current.select();
+  }, []);
 
   useEffect(() => {
     nameInputRef.current.focus();
@@ -25,22 +29,17 @@ const NewChannel = ({ handleClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      name: channel?.name,
     },
     validationSchema,
-    validateOnBlur: true,
+    validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async ({ name }) => {
       setDisabled(true);
 
       try {
-        const response = await newChannel({ name });
-        const { id } = response.data;
-
-        batch(() => {
-          dispatch(channelsActions.setCurrentChannelId(id));
-          dispatch(modalActions.closeModal());
-        });
+        await renameChannel({ id: channelId, name });
+        dispatch(modalActions.closeModal());
       } catch (error) {
         console.error(error);
         setError(error.message);
@@ -52,7 +51,7 @@ const NewChannel = ({ handleClose }) => {
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>New channel</Modal.Title>
+        <Modal.Title>Rename channel</Modal.Title>
       </Modal.Header>
       <Form onSubmit={formik.handleSubmit}>
         <Modal.Body>
@@ -74,7 +73,7 @@ const NewChannel = ({ handleClose }) => {
             Cancel
           </Button>
           <Button type="submit" variant="primary" disabled={isDisabled}>
-            Add channel
+            Rename channel
           </Button>
         </Modal.Footer>
       </Form>
@@ -82,4 +81,4 @@ const NewChannel = ({ handleClose }) => {
   );
 };
 
-export default NewChannel;
+export default RenameChannel;

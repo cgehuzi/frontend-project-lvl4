@@ -1,19 +1,24 @@
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { batch, useDispatch, useSelector } from 'react-redux';
-import { channelsActions, channelsSelectors } from '../slices/channelsSlice';
-import ApiContext from '../contexts/ApiContext';
-import { modalActions } from '../slices/modalSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { channelsSelectors } from '../../slices/channelsSlice';
+import ApiContext from '../../contexts/ApiContext';
+import { modalActions } from '../../slices/modalSlice';
+import { useEffect } from 'react';
 
 const RemoveChannel = ({ handleClose, channelId }) => {
   const dispatch = useDispatch();
   const channel = useSelector((state) => channelsSelectors.selectById(state, channelId));
-  const defaultChannelId = useSelector((state) => state.channels.defaultChannelId);
 
   const { removeChannel } = useContext(ApiContext);
+  const removeButtonRef = useRef(null);
 
   const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    removeButtonRef.current.focus();
+  }, []);
 
   const handleSubmit = async () => {
     setDisabled(true);
@@ -43,7 +48,7 @@ const RemoveChannel = ({ handleClose, channelId }) => {
         <Button variant="secondary" onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="danger" onClick={handleSubmit} disabled={isDisabled}>
+        <Button variant="danger" ref={removeButtonRef} onClick={handleSubmit} disabled={isDisabled}>
           Yes, remove
         </Button>
       </Modal.Footer>

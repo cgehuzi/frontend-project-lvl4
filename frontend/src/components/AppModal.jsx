@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { modalActions } from '../slices/modalSlice';
-import modals from '../modals';
+import modals from './modals';
 
 const AppModal = () => {
   const isOpened = useSelector((state) => state.modal.isOpened);
