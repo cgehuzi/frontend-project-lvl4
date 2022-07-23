@@ -4,13 +4,14 @@ import { useContext } from 'react';
 import { useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { batch, useDispatch, useSelector } from 'react-redux';
+import { getChannelYupSchema } from '.';
 import ApiContext from '../../contexts/ApiContext';
 import { channelsActions, channelsSelectors } from '../../slices/channelsSlice';
 import { modalActions } from '../../slices/modalSlice';
 
 const NewChannel = ({ handleClose }) => {
   const dispatch = useDispatch();
-  const { newChannel, getChannelYupSchema } = useContext(ApiContext);
+  const { newChannel } = useContext(ApiContext);
   const nameInputRef = useRef(null);
 
   const [error, setError] = useState(null);

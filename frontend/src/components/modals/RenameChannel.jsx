@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { getChannelYupSchema } from '.';
 import ApiContext from '../../contexts/ApiContext';
 import { channelsSelectors } from '../../slices/channelsSlice';
 import { modalActions } from '../../slices/modalSlice';
@@ -10,7 +11,7 @@ const RenameChannel = ({ handleClose, channelId }) => {
   const dispatch = useDispatch();
   const channel = useSelector((state) => channelsSelectors.selectById(state, channelId));
 
-  const { renameChannel, getChannelYupSchema } = useContext(ApiContext);
+  const { renameChannel } = useContext(ApiContext);
   const nameInputRef = useRef(null);
 
   const [error, setError] = useState(null);
