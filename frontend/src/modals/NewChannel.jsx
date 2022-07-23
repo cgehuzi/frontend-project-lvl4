@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { useRef } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 import ApiContext from '../contexts/ApiContext';
-import { channelsSelectors } from '../slices/channelsSlice';
+import { channelsActions, channelsSelectors } from '../slices/channelsSlice';
+import { modalActions } from '../slices/modalSlice';
 
 const NewChannel = ({ handleClose }) => {
+  const dispatch = useDispatch();
   const { newChannel, getChannelYupSchema } = useContext(ApiContext);
   const nameInputRef = useRef(null);
 
@@ -32,14 +34,18 @@ const NewChannel = ({ handleClose }) => {
       setDisabled(true);
 
       try {
-        await newChannel({ name });
-        formik.resetForm();
+        const response = await newChannel({ name });
+        const { id } = response.data;
+
+        batch(() => {
+          dispatch(channelsActions.setCurrentChannelId(id));
+          dispatch(modalActions.closeModal());
+        });
       } catch (error) {
         console.error(error);
         setError(error.message);
+        setDisabled(false);
       }
-
-      setDisabled(false);
     },
   });
 
