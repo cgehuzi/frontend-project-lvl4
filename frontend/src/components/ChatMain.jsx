@@ -3,14 +3,10 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const Message = ({ username, body }) => (
-  <div className="chat__message mb-3">
-    <small className="chat__message-avatar fw-ligh text-uppercase text-white bg-secondary">
-      {Array.from(username)[0]}
-    </small>
-    <div className="chat__message-body ps-3">
-      <small className="d-block lh-1 fw-bold">{username}</small>
-      <small className="d-block text-muted">{body}</small>
-    </div>
+  <div className="text-break mb-2">
+    <strong className="fw-bold">{username}</strong>
+    {' : '}
+    <span className="text-muted">{body}</span>
   </div>
 );
 

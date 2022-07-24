@@ -79,21 +79,6 @@
     }
   }
 
-  &__message {
-    display: flex;
-    align-items: flex-start;
-
-    &-avatar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 35px;
-      height: 35px;
-      min-width: 35px;
-      border-radius: 50%;
-    }
-  }
-
   &__form {
     display: flex;
   }
