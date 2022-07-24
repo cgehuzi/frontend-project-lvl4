@@ -6,6 +6,7 @@ import ApiContext from '../../contexts/ApiContext';
 import { modalActions } from '../../slices/modalSlice';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const RemoveChannel = ({ handleClose, channelId }) => {
   const { t } = useTranslation();
@@ -15,7 +16,6 @@ const RemoveChannel = ({ handleClose, channelId }) => {
   const { removeChannel } = useContext(ApiContext);
   const removeButtonRef = useRef(null);
 
-  const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
 
   useEffect(() => {
@@ -28,9 +28,10 @@ const RemoveChannel = ({ handleClose, channelId }) => {
     try {
       await removeChannel({ id: channelId });
       dispatch(modalActions.closeModal());
+      toast.success(t('modals.channelRemoved'));
     } catch (error) {
       console.error(error);
-      setError(error.message);
+      toast.error(t(error.message));
     }
 
     setDisabled(false);

@@ -9,6 +9,7 @@ import ApiContext from '../../contexts/ApiContext';
 import { channelsActions, channelsSelectors } from '../../slices/channelsSlice';
 import { modalActions } from '../../slices/modalSlice';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const NewChannel = ({ handleClose }) => {
   const { t } = useTranslation();
@@ -16,7 +17,6 @@ const NewChannel = ({ handleClose }) => {
   const { newChannel } = useContext(ApiContext);
   const nameInputRef = useRef(null);
 
-  const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
 
   const channels = useSelector(channelsSelectors.selectAll);
@@ -34,14 +34,14 @@ const NewChannel = ({ handleClose }) => {
       try {
         const response = await newChannel({ name });
         const { id } = response.data;
-
         batch(() => {
           dispatch(channelsActions.setCurrentChannelId(id));
           dispatch(modalActions.closeModal());
         });
+        toast.success(t('modals.channelAdded'));
       } catch (error) {
         console.error(error);
-        setError(error.message);
+        toast.error(error.message);
         setDisabled(false);
       }
     },

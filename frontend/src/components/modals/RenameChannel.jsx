@@ -7,6 +7,7 @@ import ApiContext from '../../contexts/ApiContext';
 import { channelsSelectors } from '../../slices/channelsSlice';
 import { modalActions } from '../../slices/modalSlice';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const RenameChannel = ({ handleClose, channelId }) => {
   const { t } = useTranslation();
@@ -16,7 +17,6 @@ const RenameChannel = ({ handleClose, channelId }) => {
   const { renameChannel } = useContext(ApiContext);
   const nameInputRef = useRef(null);
 
-  const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
 
   const channels = useSelector(channelsSelectors.selectAll).filter(({ id }) => id !== channelId);
@@ -34,9 +34,10 @@ const RenameChannel = ({ handleClose, channelId }) => {
       try {
         await renameChannel({ id: channelId, name });
         dispatch(modalActions.closeModal());
+        toast.success(t('modals.channelRenamed'));
       } catch (error) {
         console.error(error);
-        setError(error.message);
+        toast.error(t(error.message));
         setDisabled(false);
       }
     },

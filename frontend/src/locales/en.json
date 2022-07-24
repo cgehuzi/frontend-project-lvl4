@@ -1,14 +1,23 @@
 {
   "translation": {
     "app": {
-      "title": "Hexlet Chat"
+      "title": "Hexlet Chat",
+      "loading": "Loading...",
+      "errorUnknown": "Unknown error",
+      "errorNetwork": "Network error"
+    },
+    "validation": {
+      "channelMin": "Must be 3 to 20 characters",
+      "channelMax": "Must be 3 to 20 characters",
+      "channelUnique": "Must be unique",
+      "userNameMin": "Must be 3 to 20 characters",
+      "userNameMax": "Must be 3 to 20 characters",
+      "passwordMin": "Minimum 6 characters",
+      "confirmMatch": "Passwords must match",
+      "required": "Required field"
     },
     "channels": {
       "asideTitle": "Channels",
-      "yupMin": "Must be 3 to 20 characters",
-      "yupMax": "Must be 3 to 20 characters",
-      "yupRequired": "Required field",
-      "yupUnique": "Must be unique",
       "removeChannel": "Remove",
       "renameChannel": "Rename"
     },
@@ -26,22 +35,20 @@
       "channelName": "Channel name",
       "titleNewChannel": "New channel",
       "addChannel": "Create",
+      "channelAdded": "Channel created",
       "titleRemoveChannel": "Remove",
       "channelWillRemoved": "Channel \"{{name}}\" will be removed. Are you sure?",
       "removeChannel": "Remove channel",
+      "channelRemoved": "Channel removed",
       "titleRenameChannel": "Rename channel",
       "renameChannel": "Rename channel",
+      "channelRenamed": "Channel renamed",
       "cancel": "Cancel"
     },
     "auth": {
       "signUp": "Sign up",
       "signIn": "Sign in",
       "signOut": "Sign out",
-      "yupNameMin": "Must be 3 to 20 characters",
-      "yupNameMax": "Must be 3 to 20 characters",
-      "yupPasswordMin": "Minimum 6 characters",
-      "yupPasswordMatch": "Passwords must match",
-      "yupRequired": "Required field",
       "errorUnknown": "Unknown error",
       "error401": "Invalid username or password",
       "error409": "User already exists",

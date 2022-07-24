@@ -10,10 +10,10 @@ export const getChannelYupSchema = (channels, t) => {
     name: yup
       .string()
       .trim()
-      .min(3, t('channels.yupMin'))
-      .max(20, t('channels.yupMax'))
-      .required(t('channels.yupRequired'))
-      .notOneOf(channelsNames, t('channels.yupUnique')),
+      .min(3, t('validation.channelMin'))
+      .max(20, t('validation.channelMax'))
+      .required(t('validation.required'))
+      .notOneOf(channelsNames, t('validation.channelUnique')),
   });
 };
 

@@ -8,8 +8,8 @@ import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
 import { Provider } from 'react-redux';
 import store from '../slices';
-import AppModal from './AppModal';
 import AppHeader from './AppHeader';
+import { ToastContainer } from 'react-toastify';
 
 const SignInRedirect = () => {
   const { isSignedIn } = useContext(AuthContext);
@@ -24,7 +24,6 @@ const MainRedirect = () => {
 const Main = () => (
   <Provider store={store}>
     <Chat />
-    <AppModal />
   </Provider>
 );
 
@@ -48,6 +47,7 @@ const App = () => {
           </Routes>
         </div>
       </div>
+      <ToastContainer theme="dark" />
     </div>
   );
 };

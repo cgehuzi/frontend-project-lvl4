@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import ApiContext from '../contexts/ApiContext';
 import AuthContext from '../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const ChatForm = ({ channelId }) => {
   const { t } = useTranslation();
@@ -11,7 +12,6 @@ const ChatForm = ({ channelId }) => {
   const { newMessage } = useContext(ApiContext);
   const messageInputRef = useRef(null);
 
-  const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const ChatForm = ({ channelId }) => {
         });
       } catch (error) {
         console.error(error);
-        setError(error.message);
+        toast.error(error.message);
       }
 
       setDisabled(false);

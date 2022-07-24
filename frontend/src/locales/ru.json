@@ -1,14 +1,23 @@
 {
   "translation": {
     "app": {
-      "title": "Hexlet Chat"
+      "title": "Hexlet Chat",
+      "loading": "Загрузка...",
+      "errorUnknown": "Неизвестная ошибка",
+      "errorNetwork": "Проблемы с сетью"
+    },
+    "validation": {
+      "channelMin": "От 3 до 20 символов",
+      "channelMax": "От 3 до 20 символов",
+      "channelUnique": "Должно быть уникальным",
+      "userNameMin": "От 3 до 20 символов",
+      "userNameMax": "От 3 до 20 символов",
+      "passwordMin": "Минимум 6 символов",
+      "confirmMatch": "Пароли должны совпадать",
+      "required": "Обязательное поле"
     },
     "channels": {
       "asideTitle": "Каналы",
-      "yupMin": "От 3 до 20 символов",
-      "yupMax": "От 3 до 20 символов",
-      "yupRequired": "Обязательное поле",
-      "yupUnique": "Должно быть уникальным",
       "removeChannel": "Удалить",
       "renameChannel": "Переименовать"
     },
@@ -26,22 +35,20 @@
       "channelName": "Название канала",
       "titleNewChannel": "Новый канал",
       "addChannel": "Создать",
+      "channelAdded": "Канал создан",
       "titleRemoveChannel": "Удалить канал",
       "channelWillRemoved": "Канал \"{{name}}\" будет удалён. Вы уверены?",
       "removeChannel": "Удалить",
+      "channelRemoved": "Канал удалён",
       "titleRenameChannel": "Переименовать канал",
       "renameChannel": "Переименовать",
+      "channelRenamed": "Канал переименован",
       "cancel": "Отмена"
     },
     "auth": {
       "signUp": "Зарегистрироваться",
       "signIn": "Войти",
       "signOut": "Выйти",
-      "yupNameMin": "От 3 до 20 символов",
-      "yupNameMax": "От 3 до 20 символов",
-      "yupPasswordMin": "Минимум 6 символов",
-      "yupPasswordMatch": "Пароли должны совпадать",
-      "yupRequired": "Обязательное поле",
       "errorUnknown": "Неизвестная ошибка",
       "error401": "Неверные имя пользователя или пароль",
       "error409": "Такой пользователь уже существует",

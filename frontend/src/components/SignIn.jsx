@@ -6,6 +6,7 @@ import AuthContext from '../contexts/AuthContext';
 import routes from '../routes';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const SignIn = () => {
   const { t } = useTranslation();
@@ -28,8 +29,8 @@ const SignIn = () => {
     },
     validateOnChange: false,
     validationSchema: yup.object().shape({
-      username: yup.string().trim().required(t('auth.yupRequired')),
-      password: yup.string().trim().required(t('auth.yupRequired')),
+      username: yup.string().trim().required(t('validation.required')),
+      password: yup.string().trim().required(t('validation.required')),
     }),
     onSubmit: async ({ username, password }) => {
       setInvalid(false);
@@ -44,11 +45,6 @@ const SignIn = () => {
         console.error(error);
         setDisabled(false);
 
-        if (!error.isAxiosError) {
-          setError(t('auth.errorUnknown'));
-          return;
-        }
-
         if (error.response.status === 401) {
           setInvalid(true);
           setError(t('auth.error401'));
@@ -58,7 +54,12 @@ const SignIn = () => {
           return;
         }
 
-        setError(t('auth.errorNetwork'));
+        if (error.code === 'ERR_NETWORK') {
+          toast.error(t('auth.errorNetwork'));
+          return;
+        }
+
+        toast.error(t('auth.errorUnknown'));
       }
     },
   });

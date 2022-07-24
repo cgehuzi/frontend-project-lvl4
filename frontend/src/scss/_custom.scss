@@ -20,3 +20,13 @@ $list-group-action-hover-color: #fff;
 
 $list-group-action-active-color: #fff;
 $list-group-action-active-bg: transparent;
+
+:root {
+  --toastify-color-dark: var(--bs-dark);
+  --toastify-color-info: var(--bs-info);
+  --toastify-color-success: var(--bs-success);
+  --toastify-color-warning: var(--bs-warning);
+  --toastify-color-error: var(--bs-danger);
+
+  --toastify-text-color-light: var(--bs-gray);
+}

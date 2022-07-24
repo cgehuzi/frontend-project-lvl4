@@ -1,5 +1,6 @@
 @import 'custom';
 @import '~bootstrap/scss/bootstrap';
+@import '~react-toastify/dist/ReactToastify.css';
 
 .app {
   height: 100%;
@@ -17,6 +18,13 @@
 .auth {
   max-width: 420px;
   overflow: auto;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .chat {

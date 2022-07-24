@@ -6,6 +6,7 @@ import AuthContext from '../contexts/AuthContext';
 import routes from '../routes';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -32,19 +33,19 @@ const SignUp = () => {
       username: yup
         .string()
         .trim()
-        .min(3, t('auth.yupNameMin'))
-        .max(20, t('auth.yupNameMax'))
-        .required(t('auth.yupRequired')),
+        .min(3, t('validation.userNameMin'))
+        .max(20, t('validation.userNameMax'))
+        .required(t('validation.required')),
       password: yup
         .string()
         .trim()
-        .min(6, t('auth.yupPasswordMin'))
-        .required(t('auth.yupRequired')),
+        .min(6, t('validation.passwordMin'))
+        .required(t('validation.required')),
       confirm: yup
         .string()
         .trim()
-        .oneOf([yup.ref('password')], t('auth.yupPasswordMatch'))
-        .required(t('auth.yupRequired')),
+        .oneOf([yup.ref('password')], t('validation.confirmMatch'))
+        .required(t('validation.required')),
     }),
     onSubmit: async ({ username, password }) => {
       setInvalid(false);
@@ -59,11 +60,6 @@ const SignUp = () => {
         console.error(error);
         setDisabled(false);
 
-        if (!error.isAxiosError) {
-          setError(t('auth.errorUnknown'));
-          return;
-        }
-
         if (error.response.status === 409) {
           setInvalid(true);
           setError(t('auth.error409'));
@@ -73,7 +69,12 @@ const SignUp = () => {
           return;
         }
 
-        setError(t('auth.errorNetwork'));
+        if (error.code === 'ERR_NETWORK') {
+          toast.error(t('auth.errorNetwork'));
+          return;
+        }
+
+        toast.error(t('auth.errorUnknown'));
       }
     },
   });
