@@ -1,0 +1,62 @@
+{
+  "translation": {
+    "app": {
+      "title": "Hexlet Chat"
+    },
+    "channels": {
+      "asideTitle": "Channels",
+      "yupMin": "Must be 3 to 20 characters",
+      "yupMax": "Must be 3 to 20 characters",
+      "yupRequired": "Required field",
+      "yupUnique": "Must be unique",
+      "removeChannel": "Remove",
+      "renameChannel": "Rename"
+    },
+    "messages": {
+      "typeMessage": "Type message ...",
+      "sendMessage": "Send",
+      "counter_zero": "{{count}} messages",
+      "counter_one": "{{count}} message",
+      "counter_two": "{{count}} messages",
+      "counter_few": "{{count}} messages",
+      "counter_many": "{{count}} messages",
+      "counter_other": "{{count}} messages"
+    },
+    "modals": {
+      "channelName": "Channel name",
+      "titleNewChannel": "New channel",
+      "addChannel": "Create",
+      "titleRemoveChannel": "Remove",
+      "channelWillRemoved": "Channel \"{{name}}\" will be removed. Are you sure?",
+      "removeChannel": "Remove channel",
+      "titleRenameChannel": "Rename channel",
+      "renameChannel": "Rename channel",
+      "cancel": "Cancel"
+    },
+    "auth": {
+      "signUp": "Sign up",
+      "signIn": "Sign in",
+      "signOut": "Sign out",
+      "yupNameMin": "Must be 3 to 20 characters",
+      "yupNameMax": "Must be 3 to 20 characters",
+      "yupPasswordMin": "Minimum 6 characters",
+      "yupPasswordMatch": "Passwords must match",
+      "yupRequired": "Required field",
+      "errorUnknown": "Unknown error",
+      "error401": "Invalid username or password",
+      "error409": "User already exists",
+      "errorNetwork": "Network error",
+      "titleSignIn": "Sign in",
+      "titleSignUp": "Sign up",
+      "userName": "User name",
+      "password": "Password",
+      "confirm": "Confirm password",
+      "maybeNeedSignUp": "Don't have an account?",
+      "maybeNeedSignIn": "Already have an profile?"
+    },
+    "api": {
+      "errorNetwork": "Network error",
+      "errorServer": "Server error"
+    }
+  }
+}

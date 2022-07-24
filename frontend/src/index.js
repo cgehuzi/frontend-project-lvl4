@@ -4,9 +4,14 @@ import './scss/main.scss';
 import { BrowserRouter } from 'react-router-dom';
 import initApp from './init';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>{initApp()}</BrowserRouter>
-  </React.StrictMode>
-);
+const app = async () => {
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  const appInstance = await initApp();
+
+  root.render(
+    <React.StrictMode>
+      <BrowserRouter>{appInstance}</BrowserRouter>
+    </React.StrictMode>
+  );
+};
+app();

@@ -2,8 +2,10 @@ import { useDispatch } from 'react-redux';
 import { channelsActions } from '../slices/channelsSlice';
 import { Button, Dropdown, ListGroup } from 'react-bootstrap';
 import { modalActions } from '../slices/modalSlice';
+import { useTranslation } from 'react-i18next';
 
 const Channel = ({ id, name, removable, isCurrent }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const selectChannel = () => {
@@ -33,9 +35,13 @@ const Channel = ({ id, name, removable, isCurrent }) => {
 
           <Dropdown.Toggle className="m-1 py-0" variant={isCurrent ? 'primary' : 'dark'} split />
 
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={openRemoveChannelModal}>Remove channel</Dropdown.Item>
-            <Dropdown.Item onClick={openRenameChannelModal}>Rename channel</Dropdown.Item>
+          <Dropdown.Menu variant="dark">
+            <Dropdown.Item onClick={openRenameChannelModal}>
+              {t('channels.renameChannel')}
+            </Dropdown.Item>
+            <Dropdown.Item onClick={openRemoveChannelModal}>
+              {t('channels.removeChannel')}
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
@@ -55,6 +61,7 @@ const Channel = ({ id, name, removable, isCurrent }) => {
 };
 
 const ChatAside = ({ channels, currentChannelId }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const openNewChannelModal = () => dispatch(modalActions.openModal({ type: 'newChannel' }));
@@ -62,7 +69,7 @@ const ChatAside = ({ channels, currentChannelId }) => {
   return (
     <div className="chat__aside bg-dark text-white">
       <div className="chat__aside-header px-4">
-        <div className="h5 m-0">Channels</div>
+        <div className="h5 m-0">{t('channels.asideTitle')}</div>
         <Button size="sm" variant="outline-light" onClick={openNewChannelModal}>
           <span className="px-1 fs-6 lh-1">+</span>
         </Button>

@@ -5,8 +5,10 @@ import { Form, Card, Button, Alert } from 'react-bootstrap';
 import AuthContext from '../contexts/AuthContext';
 import routes from '../routes';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 const SignUp = () => {
+  const { t } = useTranslation();
   const { signIn } = useContext(AuthContext);
 
   const [isInvalid, setInvalid] = useState(false);
@@ -30,15 +32,19 @@ const SignUp = () => {
       username: yup
         .string()
         .trim()
-        .min(3, 'Length from 3 to 20 characters')
-        .max(20, 'Length from 3 to 20 characters')
-        .required('Required field'),
-      password: yup.string().trim().min(6, 'Minimum 6 characters').required('Required field'),
+        .min(3, t('auth.yupNameMin'))
+        .max(20, t('auth.yupNameMax'))
+        .required(t('auth.yupRequired')),
+      password: yup
+        .string()
+        .trim()
+        .min(6, t('auth.yupPasswordMin'))
+        .required(t('auth.yupRequired')),
       confirm: yup
         .string()
         .trim()
-        .oneOf([yup.ref('password')], 'Passwords must match')
-        .required('Required field'),
+        .oneOf([yup.ref('password')], t('auth.yupPasswordMatch'))
+        .required(t('auth.yupRequired')),
     }),
     onSubmit: async ({ username, password }) => {
       setInvalid(false);
@@ -54,20 +60,20 @@ const SignUp = () => {
         setDisabled(false);
 
         if (!error.isAxiosError) {
-          setError('Unknown error');
+          setError(t('auth.errorUnknown'));
           return;
         }
 
         if (error.response.status === 409) {
           setInvalid(true);
-          setError('User already exists');
+          setError(t('auth.error409'));
           setTimeout(() => {
             usernameInputRef.current.select();
           });
           return;
         }
 
-        setError('Network error');
+        setError(t('auth.errorNetwork'));
       }
     },
   });
@@ -77,13 +83,13 @@ const SignUp = () => {
       <Card className="shadow-sm">
         <Card.Body className="p-5">
           <Form onSubmit={formik.handleSubmit}>
-            <h1 className="h3 text-center mb-4">Sign up</h1>
+            <h1 className="h3 text-center mb-4">{t('auth.titleSignUp')}</h1>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form.Group className="position-relative mb-3">
-              <Form.FloatingLabel controlId="username" label="User name">
+              <Form.FloatingLabel controlId="username" label={t('auth.userName')}>
                 <Form.Control
                   type="text"
-                  placeholder="User name"
+                  placeholder={t('auth.userName')}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.username}
@@ -100,10 +106,10 @@ const SignUp = () => {
               </Form.FloatingLabel>
             </Form.Group>
             <Form.Group className="position-relative mb-3">
-              <Form.FloatingLabel controlId="password" label="Password">
+              <Form.FloatingLabel controlId="password" label={t('auth.password')}>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder={t('auth.password')}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.password}
@@ -119,10 +125,10 @@ const SignUp = () => {
               </Form.FloatingLabel>
             </Form.Group>
             <Form.Group className="position-relative mb-3">
-              <Form.FloatingLabel controlId="confirm" label="Confirm password">
+              <Form.FloatingLabel controlId="confirm" label={t('auth.confirm')}>
                 <Form.Control
                   type="password"
-                  placeholder="Confirm password"
+                  placeholder={t('auth.confirm')}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.confirm}
@@ -138,13 +144,13 @@ const SignUp = () => {
               </Form.FloatingLabel>
             </Form.Group>
             <Button className="w-100" variant="primary" type="submit" disabled={isDisabled}>
-              Sign up
+              {t('auth.signUp')}
             </Button>
           </Form>
         </Card.Body>
         <Card.Footer className="p-4">
           <div className="text-center">
-            <span>Already have an profile?</span> <a href={routes.signInPagePath()}>Sign in</a>
+            {t('auth.maybeNeedSignIn')} <a href={routes.signInPagePath()}>{t('auth.signIn')}</a>
           </div>
         </Card.Footer>
       </Card>

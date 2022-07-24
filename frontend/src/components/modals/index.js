@@ -3,17 +3,17 @@ import RemoveChannel from './RemoveChannel';
 import RenameChannel from './RenameChannel';
 import * as yup from 'yup';
 
-export const getChannelYupSchema = (channels) => {
+export const getChannelYupSchema = (channels, t) => {
   const channelsNames = channels.map(({ name }) => name);
 
   return yup.object().shape({
     name: yup
       .string()
       .trim()
-      .min(3, 'Length from 3 to 20 characters')
-      .max(20, 'Length from 3 to 20 characters')
-      .required('Required field')
-      .notOneOf(channelsNames, 'Channel name must be unique'),
+      .min(3, t('channels.yupMin'))
+      .max(20, t('channels.yupMax'))
+      .required(t('channels.yupRequired'))
+      .notOneOf(channelsNames, t('channels.yupUnique')),
   });
 };
 

@@ -5,8 +5,11 @@ import { channelsActions } from './slices/channelsSlice';
 import { messagsActions } from './slices/messagesSlice';
 import ApiProvider from './contexts/ApiProvider';
 import AuthProvider from './contexts/AuthProvider';
+import i18next from 'i18next';
+import locales from './locales';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
 
-const initApp = () => {
+const initApp = async () => {
   const socket = io();
 
   socket.on('newMessage', (payload) => {
@@ -33,10 +36,15 @@ const initApp = () => {
     store.dispatch(channelsActions.renameChannel(payload));
   });
 
+  const i18n = i18next.createInstance();
+  await i18n.use(initReactI18next).init({ resources: locales, fallbackLng: 'ru' });
+
   return (
     <ApiProvider socket={socket}>
       <AuthProvider>
-        <App />
+        <I18nextProvider i18n={i18n}>
+          <App />
+        </I18nextProvider>
       </AuthProvider>
     </ApiProvider>
   );

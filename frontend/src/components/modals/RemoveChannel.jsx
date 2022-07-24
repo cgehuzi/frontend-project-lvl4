@@ -5,8 +5,10 @@ import { channelsSelectors } from '../../slices/channelsSlice';
 import ApiContext from '../../contexts/ApiContext';
 import { modalActions } from '../../slices/modalSlice';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const RemoveChannel = ({ handleClose, channelId }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const channel = useSelector((state) => channelsSelectors.selectById(state, channelId));
 
@@ -37,19 +39,17 @@ const RemoveChannel = ({ handleClose, channelId }) => {
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>Remove channel</Modal.Title>
+        <Modal.Title>{t('modals.titleRemoveChannel')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="m-0">
-          Channel <strong>"{channel?.name}"</strong> will be removed. Are you sure?
-        </p>
+        <p className="m-0">{t('modals.channelWillRemoved', { name: channel?.name })}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          Cancel
+          {t('modals.cancel')}
         </Button>
         <Button variant="danger" ref={removeButtonRef} onClick={handleSubmit} disabled={isDisabled}>
-          Yes, remove
+          {t('modals.removeChannel')}
         </Button>
       </Modal.Footer>
     </>

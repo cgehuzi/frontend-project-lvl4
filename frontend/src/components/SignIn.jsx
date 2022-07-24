@@ -5,8 +5,10 @@ import { Form, Card, Button, Alert } from 'react-bootstrap';
 import AuthContext from '../contexts/AuthContext';
 import routes from '../routes';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 const SignIn = () => {
+  const { t } = useTranslation();
   const { signIn } = useContext(AuthContext);
 
   const [isInvalid, setInvalid] = useState(false);
@@ -26,8 +28,8 @@ const SignIn = () => {
     },
     validateOnChange: false,
     validationSchema: yup.object().shape({
-      username: yup.string().trim().required('Required field'),
-      password: yup.string().trim().required('Required field'),
+      username: yup.string().trim().required(t('auth.yupRequired')),
+      password: yup.string().trim().required(t('auth.yupRequired')),
     }),
     onSubmit: async ({ username, password }) => {
       setInvalid(false);
@@ -43,20 +45,20 @@ const SignIn = () => {
         setDisabled(false);
 
         if (!error.isAxiosError) {
-          setError('Unknown error');
+          setError(t('auth.errorUnknown'));
           return;
         }
 
         if (error.response.status === 401) {
           setInvalid(true);
-          setError('Invalid username or password');
+          setError(t('auth.error401'));
           setTimeout(() => {
             usernameInputRef.current.select();
           });
           return;
         }
 
-        setError('Network error');
+        setError(t('auth.errorNetwork'));
       }
     },
   });
@@ -66,13 +68,13 @@ const SignIn = () => {
       <Card className="shadow-sm">
         <Card.Body className="p-5">
           <Form onSubmit={formik.handleSubmit}>
-            <h1 className="h3 text-center mb-4">Sign in</h1>
+            <h1 className="h3 text-center mb-4">{t('auth.titleSignIn')}</h1>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form.Group className="position-relative mb-3">
-              <Form.FloatingLabel controlId="username" label="User name">
+              <Form.FloatingLabel controlId="username" label={t('auth.userName')}>
                 <Form.Control
                   type="text"
-                  placeholder="User name"
+                  placeholder={t('auth.userName')}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.username}
@@ -89,10 +91,10 @@ const SignIn = () => {
               </Form.FloatingLabel>
             </Form.Group>
             <Form.Group className="position-relative mb-3">
-              <Form.FloatingLabel controlId="password" label="Password">
+              <Form.FloatingLabel controlId="password" label={t('auth.password')}>
                 <Form.Control
                   type="password"
-                  placeholder="Password"
+                  placeholder={t('auth.password')}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.password}
@@ -108,13 +110,13 @@ const SignIn = () => {
               </Form.FloatingLabel>
             </Form.Group>
             <Button className="w-100" variant="primary" type="submit" disabled={isDisabled}>
-              Sign in
+              {t('auth.signIn')}
             </Button>
           </Form>
         </Card.Body>
         <Card.Footer className="p-4">
           <div className="text-center">
-            <span>New to Hexlet Chat?</span> <a href={routes.signUpPagePath()}>Sign up</a>
+            {t('auth.maybeNeedSignUp')} <a href={routes.signUpPagePath()}>{t('auth.signUp')}</a>
           </div>
         </Card.Footer>
       </Card>

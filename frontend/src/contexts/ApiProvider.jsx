@@ -1,10 +1,12 @@
 import ApiContext from './ApiContext';
+import { useTranslation } from 'react-i18next';
 
 const ApiProvider = ({ socket, children }) => {
+  const { t } = useTranslation();
   const sendSocketEmit = (...args) =>
     new Promise((resolve, reject) => {
       const timer = setTimeout(() => {
-        reject(new Error('Some problems with network'));
+        reject(new Error(t('api.errorNetwork')));
         return;
       }, 3000);
 
@@ -15,7 +17,7 @@ const ApiProvider = ({ socket, children }) => {
           resolve(response);
         }
 
-        reject(new Error('Some problems with server'));
+        reject(new Error(t('api.errorServer')));
       });
     });
 

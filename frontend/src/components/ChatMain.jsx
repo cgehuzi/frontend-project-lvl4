@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Message = ({ username, body }) => (
   <div className="chat__message mb-3">
@@ -14,6 +15,7 @@ const Message = ({ username, body }) => (
 );
 
 const ChatMain = ({ channel, messages }) => {
+  const { t } = useTranslation();
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -24,7 +26,9 @@ const ChatMain = ({ channel, messages }) => {
     <>
       <div className="chat__main-header px-4 border-bottom bg-white">
         <strong className="h5 m-0 fw-bold text-truncate"># {channel?.name}</strong>
-        <span className="text-muted ms-3 text-nowrap">{messages.length} messages</span>
+        <span className="text-muted ms-3 text-nowrap">
+          {t('messages.counter', { count: messages.length })}
+        </span>
       </div>
       <div className="chat__main-body px-5 py-3">
         {messages.map(({ id, username, body }) => (

@@ -8,8 +8,10 @@ import { getChannelYupSchema } from '.';
 import ApiContext from '../../contexts/ApiContext';
 import { channelsActions, channelsSelectors } from '../../slices/channelsSlice';
 import { modalActions } from '../../slices/modalSlice';
+import { useTranslation } from 'react-i18next';
 
 const NewChannel = ({ handleClose }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { newChannel } = useContext(ApiContext);
   const nameInputRef = useRef(null);
@@ -18,7 +20,7 @@ const NewChannel = ({ handleClose }) => {
   const [isDisabled, setDisabled] = useState(false);
 
   const channels = useSelector(channelsSelectors.selectAll);
-  const validationSchema = getChannelYupSchema(channels);
+  const validationSchema = getChannelYupSchema(channels, t);
 
   const formik = useFormik({
     initialValues: {
@@ -56,12 +58,12 @@ const NewChannel = ({ handleClose }) => {
   return (
     <>
       <Modal.Header closeButton>
-        <Modal.Title>New channel</Modal.Title>
+        <Modal.Title>{t('modals.titleNewChannel')}</Modal.Title>
       </Modal.Header>
       <Form onSubmit={formik.handleSubmit}>
         <Modal.Body>
           <Form.Group className="position-relative" controlId="name">
-            <Form.Label>Channel name</Form.Label>
+            <Form.Label>{t('modals.channelName')}</Form.Label>
             <Form.Control
               type="text"
               ref={nameInputRef}
@@ -78,10 +80,10 @@ const NewChannel = ({ handleClose }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Cancel
+            {t('modals.cancel')}
           </Button>
           <Button type="submit" variant="primary" disabled={isDisabled}>
-            Add channel
+            {t('modals.addChannel')}
           </Button>
         </Modal.Footer>
       </Form>

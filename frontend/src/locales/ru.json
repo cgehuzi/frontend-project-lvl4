@@ -1,0 +1,62 @@
+{
+  "translation": {
+    "app": {
+      "title": "Hexlet Chat"
+    },
+    "channels": {
+      "asideTitle": "Каналы",
+      "yupMin": "От 3 до 20 символов",
+      "yupMax": "От 3 до 20 символов",
+      "yupRequired": "Обязательное поле",
+      "yupUnique": "Должно быть уникальным",
+      "removeChannel": "Удалить",
+      "renameChannel": "Переименовать"
+    },
+    "messages": {
+      "typeMessage": "Введите сообщение ...",
+      "sendMessage": "Отправить",
+      "counter_zero": "{{count}} сообщений",
+      "counter_one": "{{count}} сообщение",
+      "counter_two": "{{count}} сообщения",
+      "counter_few": "{{count}} сообщения",
+      "counter_many": "{{count}} сообщений",
+      "counter_other": "{{count}} сообщений"
+    },
+    "modals": {
+      "channelName": "Название канала",
+      "titleNewChannel": "Новый канал",
+      "addChannel": "Создать",
+      "titleRemoveChannel": "Удалить канал",
+      "channelWillRemoved": "Канал \"{{name}}\" будет удалён. Вы уверены?",
+      "removeChannel": "Удалить",
+      "titleRenameChannel": "Переименовать канал",
+      "renameChannel": "Переименовать",
+      "cancel": "Отмена"
+    },
+    "auth": {
+      "signUp": "Зарегистрироваться",
+      "signIn": "Войти",
+      "signOut": "Выйти",
+      "yupNameMin": "От 3 до 20 символов",
+      "yupNameMax": "От 3 до 20 символов",
+      "yupPasswordMin": "Минимум 6 символов",
+      "yupPasswordMatch": "Пароли должны совпадать",
+      "yupRequired": "Обязательное поле",
+      "errorUnknown": "Неизвестная ошибка",
+      "error401": "Неверные имя пользователя или пароль",
+      "error409": "Такой пользователь уже существует",
+      "errorNetwork": "Проблемы с сетью",
+      "titleSignIn": "Войти",
+      "titleSignUp": "Регистрация",
+      "userName": "Имя пользователя",
+      "password": "Пароль",
+      "confirm": "Подтвердите пароль",
+      "maybeNeedSignUp": "Нет аккаунта?",
+      "maybeNeedSignIn": "Уже есть аккаунт?"
+    },
+    "api": {
+      "errorNetwork": "Проблемы с сетью",
+      "errorServer": "Проблемы с сервером"
+    }
+  }
+}

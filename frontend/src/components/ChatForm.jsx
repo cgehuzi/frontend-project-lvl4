@@ -3,8 +3,10 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ApiContext from '../contexts/ApiContext';
 import AuthContext from '../contexts/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 const ChatForm = ({ channelId }) => {
+  const { t } = useTranslation();
   const { user } = useContext(AuthContext);
   const { newMessage } = useContext(ApiContext);
   const messageInputRef = useRef(null);
@@ -48,7 +50,7 @@ const ChatForm = ({ channelId }) => {
           className="fs-6 me-3"
           size="lg"
           name="body"
-          placeholder="Type message ..."
+          placeholder={t('messages.typeMessage')}
           onChange={formik.handleChange}
           value={formik.values.body}
           disabled={isDisabled}
@@ -62,7 +64,7 @@ const ChatForm = ({ channelId }) => {
           type="submit"
           disabled={!formik.dirty || formik.isSubmitting}
         >
-          Send
+          {t('messages.sendMessage')}
         </Button>
       </Form>
     </div>
