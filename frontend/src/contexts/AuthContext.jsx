@@ -4,4 +4,5 @@ export default createContext({
   user: {},
   signIn: () => {},
   signOut: () => {},
+  isSignedIn: () => {},
 });

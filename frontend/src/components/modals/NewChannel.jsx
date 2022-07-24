@@ -25,7 +25,7 @@ const NewChannel = ({ handleClose }) => {
       name: '',
     },
     validationSchema,
-    validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: async ({ name }) => {
       setDisabled(true);
 
@@ -66,7 +66,6 @@ const NewChannel = ({ handleClose }) => {
               type="text"
               ref={nameInputRef}
               value={formik.values.name}
-              onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               disabled={isDisabled}
               isInvalid={formik.errors.name && formik.touched.name}

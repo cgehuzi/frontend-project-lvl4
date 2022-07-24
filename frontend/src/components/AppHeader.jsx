@@ -3,14 +3,14 @@ import { Button, Navbar } from 'react-bootstrap';
 import AuthContext from '../contexts/AuthContext';
 
 const AppHeader = () => {
-  const { user, signOut } = useContext(AuthContext);
+  const { isSignedIn, signOut } = useContext(AuthContext);
 
   return (
     <>
       <Navbar expand="lg" className="shadow-sm bg-white">
         <div className="container">
           <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
-          {user && (
+          {isSignedIn() && (
             <Button variant="outline-dark" onClick={signOut}>
               Sign out
             </Button>

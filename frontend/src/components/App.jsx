@@ -14,13 +14,13 @@ import AppModal from './AppModal';
 import AppHeader from './AppHeader';
 
 const SignInRedirect = () => {
-  const { user } = useContext(AuthContext);
-  return !user ? <Navigate to={routes.signInPagePath()} /> : <Outlet />;
+  const { isSignedIn } = useContext(AuthContext);
+  return !isSignedIn() ? <Navigate to={routes.signInPagePath()} /> : <Outlet />;
 };
 
 const MainRedirect = () => {
-  const { user } = useContext(AuthContext);
-  return user ? <Navigate to={routes.mainPagePath()} /> : <Outlet />;
+  const { isSignedIn } = useContext(AuthContext);
+  return isSignedIn() ? <Navigate to={routes.mainPagePath()} /> : <Outlet />;
 };
 
 const Main = () => (

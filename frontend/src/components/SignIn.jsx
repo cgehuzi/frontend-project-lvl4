@@ -26,8 +26,8 @@ const SignIn = () => {
     },
     validateOnChange: false,
     validationSchema: yup.object().shape({
-      username: yup.string().trim().required(),
-      password: yup.string().trim().required(),
+      username: yup.string().trim().required('Required field'),
+      password: yup.string().trim().required('Required field'),
     }),
     onSubmit: async ({ username, password }) => {
       setInvalid(false);
@@ -81,9 +81,11 @@ const SignIn = () => {
                   ref={usernameInputRef}
                   required
                 />
-                <Form.Control.Feedback type="invalid" tooltip>
-                  {formik.errors.username}
-                </Form.Control.Feedback>
+                {formik.errors.username && (
+                  <Form.Control.Feedback type="invalid" tooltip>
+                    {formik.errors.username}
+                  </Form.Control.Feedback>
+                )}
               </Form.FloatingLabel>
             </Form.Group>
             <Form.Group className="position-relative mb-3">
@@ -98,9 +100,11 @@ const SignIn = () => {
                   disabled={isDisabled}
                   required
                 />
-                <Form.Control.Feedback type="invalid" tooltip>
-                  {formik.errors.password}
-                </Form.Control.Feedback>
+                {formik.errors.password && (
+                  <Form.Control.Feedback type="invalid" tooltip>
+                    {formik.errors.password}
+                  </Form.Control.Feedback>
+                )}
               </Form.FloatingLabel>
             </Form.Group>
             <Button className="w-100" variant="primary" type="submit" disabled={isDisabled}>
