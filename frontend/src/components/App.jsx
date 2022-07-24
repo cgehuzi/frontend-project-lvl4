@@ -3,13 +3,11 @@ import routes from '../routes';
 import SignIn from './SignIn';
 import NotFound from './NotFoundPage';
 import SignUp from './SignUp';
-import AuthProvider from '../contexts/AuthProvider';
 import Chat from './Chat';
 import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
 import { Provider } from 'react-redux';
 import store from '../slices';
-import ApiProvider from '../contexts/ApiProvider';
 import AppModal from './AppModal';
 import AppHeader from './AppHeader';
 
@@ -24,36 +22,32 @@ const MainRedirect = () => {
 };
 
 const Main = () => (
-  <ApiProvider>
-    <Provider store={store}>
-      <Chat />
-      <AppModal />
-    </Provider>
-  </ApiProvider>
+  <Provider store={store}>
+    <Chat />
+    <AppModal />
+  </Provider>
 );
 
 const App = () => {
   return (
     <div className="app">
-      <AuthProvider>
-        <AppHeader />
-        <div className="app__body">
-          <div className="container-fluid py-3 py-md-5 overflow-auto h-100">
-            <Routes>
-              <Route path={routes.mainPagePath()} element={<SignInRedirect />}>
-                <Route path="" element={<Main />} />
-              </Route>
-              <Route path={routes.signInPagePath()} element={<MainRedirect />}>
-                <Route path="" element={<SignIn />} />
-              </Route>
-              <Route path={routes.signUpPagePath()} element={<MainRedirect />}>
-                <Route path="" element={<SignUp />} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </div>
+      <AppHeader />
+      <div className="app__body">
+        <div className="container-fluid py-3 py-md-5 overflow-auto h-100">
+          <Routes>
+            <Route path={routes.mainPagePath()} element={<SignInRedirect />}>
+              <Route path="" element={<Main />} />
+            </Route>
+            <Route path={routes.signInPagePath()} element={<MainRedirect />}>
+              <Route path="" element={<SignIn />} />
+            </Route>
+            <Route path={routes.signUpPagePath()} element={<MainRedirect />}>
+              <Route path="" element={<SignUp />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
-      </AuthProvider>
+      </div>
     </div>
   );
 };

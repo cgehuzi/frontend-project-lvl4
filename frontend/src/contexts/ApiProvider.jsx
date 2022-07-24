@@ -1,9 +1,6 @@
 import ApiContext from './ApiContext';
-import { useContext } from 'react';
 
-const ApiProvider = ({ children }) => {
-  const { socket } = useContext(ApiContext);
-
+const ApiProvider = ({ socket, children }) => {
   const sendSocketEmit = (...args) =>
     new Promise((resolve, reject) => {
       const timer = setTimeout(() => {

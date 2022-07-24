@@ -3,11 +3,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from './AuthContext';
 import routes from '../routes';
-import _ from 'lodash';
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [avatarColors, setAvatarColors] = useState({});
   const navigate = useNavigate();
 
   const signIn = (user) => {
