@@ -42,28 +42,30 @@ const ChatForm = ({ channelId }) => {
     },
   });
   return (
-    <Form className="chat__form" onSubmit={formik.handleSubmit}>
-      <Form.Control
-        className="fs-6 me-3"
-        size="lg"
-        name="body"
-        placeholder="Type message ..."
-        onChange={formik.handleChange}
-        value={formik.values.body}
-        disabled={isDisabled}
-        ref={messageInputRef}
-        required
-      />
-      <Button
-        className="fs-6"
-        size="lg"
-        variant="primary"
-        type="submit"
-        disabled={!formik.dirty || formik.isSubmitting}
-      >
-        Send
-      </Button>
-    </Form>
+    <div className="chat__main-footer p-4 bg-white border-top">
+      <Form className="chat__form" onSubmit={formik.handleSubmit}>
+        <Form.Control
+          className="fs-6 me-3"
+          size="lg"
+          name="body"
+          placeholder="Type message ..."
+          onChange={formik.handleChange}
+          value={formik.values.body}
+          disabled={isDisabled}
+          ref={messageInputRef}
+          required
+        />
+        <Button
+          className="fs-6"
+          size="lg"
+          variant="primary"
+          type="submit"
+          disabled={!formik.dirty || formik.isSubmitting}
+        >
+          Send
+        </Button>
+      </Form>
+    </div>
   );
 };
 export default ChatForm;

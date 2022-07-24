@@ -17,10 +17,6 @@ const NewChannel = ({ handleClose }) => {
   const [error, setError] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
 
-  useEffect(() => {
-    nameInputRef.current.focus();
-  }, []);
-
   const channels = useSelector(channelsSelectors.selectAll);
   const validationSchema = getChannelYupSchema(channels);
 
@@ -49,6 +45,14 @@ const NewChannel = ({ handleClose }) => {
     },
   });
 
+  useEffect(() => {
+    nameInputRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    nameInputRef.current.focus();
+  }, [formik.errors.name]);
+
   return (
     <>
       <Modal.Header closeButton>
@@ -56,7 +60,7 @@ const NewChannel = ({ handleClose }) => {
       </Modal.Header>
       <Form onSubmit={formik.handleSubmit}>
         <Modal.Body>
-          <Form.Group controlId="name">
+          <Form.Group className="position-relative" controlId="name">
             <Form.Label>Channel name</Form.Label>
             <Form.Control
               type="text"
@@ -68,7 +72,9 @@ const NewChannel = ({ handleClose }) => {
               isInvalid={formik.errors.name && formik.touched.name}
               required
             />
-            <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid" tooltip>
+              {formik.errors.name}
+            </Form.Control.Feedback>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>

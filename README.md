@@ -1,4 +1,4 @@
-# Slack Chat
+# Hexlet Chat
 
 Создано в рамках учебного проекта [Чат (Slack)](https://ru.hexlet.io/programs/frontend/projects/12) от [Хекслет](https://ru.hexlet.io/).
 

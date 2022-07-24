@@ -10,8 +10,8 @@ export const getChannelYupSchema = (channels) => {
     name: yup
       .string()
       .trim()
-      .min(3, 'Minimum 3 letters')
-      .max(20, 'Maximum 20 letters')
+      .min(3, 'Length from 3 to 20 letters')
+      .max(20, 'Length from 3 to 20 letters')
       .required('Required field')
       .notOneOf(channelsNames, 'Channel name must be unique'),
   });

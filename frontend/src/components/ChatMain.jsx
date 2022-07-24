@@ -24,8 +24,8 @@ const ChatMain = ({ channel, messages }) => {
   return (
     <>
       <div className="chat__main-header px-4 border-bottom bg-white">
-        <strong className="h5 m-0 fw-bold"># {channel?.name}</strong>
-        <span className="text-muted ms-3">{messages.length} messages</span>
+        <strong className="h5 m-0 fw-bold text-truncate"># {channel?.name}</strong>
+        <span className="text-muted ms-3 text-nowrap">{messages.length} messages</span>
       </div>
       <div className="chat__main-body px-5 py-3">
         {messages.map(({ id, username, body }) => (

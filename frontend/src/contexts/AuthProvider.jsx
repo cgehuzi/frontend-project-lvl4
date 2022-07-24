@@ -20,12 +20,18 @@ const AuthProvider = ({ children }) => {
     navigate(routes.mainPagePath());
   };
 
+  const isSignIn = () => Boolean(user);
+
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (user) setUser(JSON.parse(user));
   }, []);
 
-  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, signIn, signOut, isSignIn }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

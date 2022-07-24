@@ -1,6 +1,6 @@
 {
-    "name": "Slack Chat",
-    "short_name": "Slack Chat",
+    "name": "Hexlet Chat",
+    "short_name": "Hexlet Chat",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

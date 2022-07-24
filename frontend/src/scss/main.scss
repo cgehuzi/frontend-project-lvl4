@@ -1,12 +1,32 @@
 @import 'custom';
 @import '~bootstrap/scss/bootstrap';
 
-.chat {
+.app {
   height: 100%;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
-  @media (max-width: 767px) {
-    overflow: auto;
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
+.auth {
+  max-width: 420px;
+  overflow: auto;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 
   &__aside {
@@ -16,13 +36,14 @@
     @media (min-width: 768px) {
       height: 100%;
       width: 270px;
+      min-width: 270px;
     }
 
     &-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 80px;
+      min-height: 72px;
     }
 
     &-body {
@@ -34,17 +55,14 @@
   &__main {
     display: flex;
     flex-direction: column;
-
-    @media (min-width: 768px) {
-      height: 100%;
-    }
+    width: 100%;
 
     &-header {
       position: sticky;
       top: 0;
       display: flex;
       align-items: center;
-      min-height: 80px;
+      min-height: 72px;
     }
 
     &-body {

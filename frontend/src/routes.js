@@ -1,10 +1,10 @@
 const routes = {
-  loginPath: () => '/api/v1/login',
-  signupPath: () => '/api/v1/signup',
+  signInPath: () => '/api/v1/login',
+  signUpPath: () => '/api/v1/signup',
   dataPath: () => '/api/v1/data',
   mainPagePath: () => '/',
-  loginPagePath: () => '/login',
-  signupPagePath: () => '/signup',
+  signInPagePath: () => '/login',
+  signUpPagePath: () => '/signup',
 };
 
 export default routes;
