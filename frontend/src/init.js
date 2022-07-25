@@ -8,6 +8,7 @@ import AuthProvider from './contexts/AuthProvider';
 import i18next from 'i18next';
 import locales from './locales';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
+import filter from 'leo-profanity';
 
 const initApp = async () => {
   const socket = io();
@@ -35,6 +36,11 @@ const initApp = async () => {
     if (!id) return;
     store.dispatch(channelsActions.renameChannel(payload));
   });
+
+  // изменения в модуль вносятся глобально
+  filter.add(filter.getDictionary('en'));
+  filter.add(filter.getDictionary('ru'));
+  filter.add(filter.getDictionary('fr'));
 
   const i18n = i18next.createInstance();
   await i18n.use(initReactI18next).init({ resources: locales, fallbackLng: 'ru' });
