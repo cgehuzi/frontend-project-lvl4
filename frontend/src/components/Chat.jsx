@@ -11,17 +11,14 @@ import ChatAside from './ChatAside';
 import ChatForm from './ChatForm';
 import ChatMain from './ChatMain';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import routes from '../routes';
 import { toast } from 'react-toastify';
 
 const Chat = () => {
   const { t } = useTranslation();
   const { user, signOut } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const channels = useSelector(channelsSelectors.selectAll);
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
