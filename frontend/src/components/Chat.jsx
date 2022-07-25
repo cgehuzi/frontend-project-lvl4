@@ -7,11 +7,12 @@ import { loadData } from '../slices';
 import { channelsSelectors } from '../slices/channelsSlice';
 import { messagesSelectors } from '../slices/messagesSlice';
 import AppModal from './AppModal';
-import ChatAside from './ChatAside';
+import ChatChannels from './ChatChannels';
 import ChatForm from './ChatForm';
-import ChatMain from './ChatMain';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import ChatMessages from './ChatMessages';
+import ChatHeader from './ChatHeader';
 
 const Chat = () => {
   const { t } = useTranslation();
@@ -66,9 +67,10 @@ const Chat = () => {
   ) : (
     <>
       <div className="chat container rounded shadow p-0 bg-white">
-        <ChatAside channels={channels} currentChannelId={currentChannelId} />
+        <ChatChannels channels={channels} currentChannelId={currentChannelId} />
         <div className="chat__main">
-          <ChatMain channel={currentChannel} messages={currentMessages} />
+          <ChatHeader channel={currentChannel} messages={currentMessages} />
+          <ChatMessages messages={currentMessages} />
           <ChatForm channelId={currentChannelId} />
         </div>
       </div>

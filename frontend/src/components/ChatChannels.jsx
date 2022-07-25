@@ -60,7 +60,7 @@ const Channel = ({ id, name, removable, isCurrent }) => {
   );
 };
 
-const ChatAside = ({ channels, currentChannelId }) => {
+const ChatChannels = ({ channels, currentChannelId }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -91,4 +91,4 @@ const ChatAside = ({ channels, currentChannelId }) => {
   );
 };
 
-export default ChatAside;
+export default ChatChannels;
