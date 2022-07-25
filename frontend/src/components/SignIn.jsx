@@ -72,10 +72,10 @@ const SignIn = () => {
             <h1 className="h3 text-center mb-4">{t('auth.titleSignIn')}</h1>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form.Group className="position-relative mb-3">
-              <Form.FloatingLabel controlId="username" label={t('auth.userName')}>
+              <Form.FloatingLabel controlId="username" label={t('auth.yourUserName')}>
                 <Form.Control
                   type="text"
-                  placeholder={t('auth.userName')}
+                  placeholder={t('auth.yourUserName')}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   value={formik.values.username}
