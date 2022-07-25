@@ -18,7 +18,7 @@ const Chat = () => {
   const { user, signOut } = useContext(AuthContext);
   const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(true);
 
   const channels = useSelector(channelsSelectors.selectAll);
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
@@ -29,13 +29,13 @@ const Chat = () => {
   const messages = useSelector(messagesSelectors.selectAll);
   const currentMessages = messages.filter(({ channelId }) => channelId === currentChannelId);
 
-  useEffect(
-    () => async () => {
-      setLoading(true);
+  useEffect(() => {
+    (async () => {
+      setDataLoaded(true);
 
       try {
         await dispatch(loadData(user)).unwrap();
-        setLoading(false);
+        setDataLoaded(false);
       } catch (error) {
         console.error(error);
 
@@ -54,14 +54,13 @@ const Chat = () => {
 
         toast.error(t('app.errorUnknown'));
       }
-    },
-    []
-  );
+    })();
+  }, []);
 
-  return loading ? (
+  return dataLoaded ? (
     <div className="loader">
       <Spinner animation="border" role="status" variant="primary">
-        <span className="visually-hidden">{t('app.loading')}</span>
+        <span className="visually-hidden">{t('app.dataLoaded')}</span>
       </Spinner>
     </div>
   ) : (
