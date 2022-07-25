@@ -4,7 +4,7 @@
       "title": "Hexlet Chat",
       "loading": "Загрузка...",
       "errorUnknown": "Неизвестная ошибка",
-      "errorNetwork": "Проблемы с сетью"
+      "errorNetwork": "Ошибка соединения"
     },
     "validation": {
       "channelMin": "От 3 до 20 символов",
@@ -12,7 +12,7 @@
       "channelUnique": "Должно быть уникальным",
       "userNameMin": "От 3 до 20 символов",
       "userNameMax": "От 3 до 20 символов",
-      "passwordMin": "Минимум 6 символов",
+      "passwordMin": "Не менее 6 символов",
       "confirmMatch": "Пароли должны совпадать",
       "required": "Обязательное поле"
     },
@@ -34,14 +34,14 @@
     "modals": {
       "channelName": "Название канала",
       "titleNewChannel": "Новый канал",
-      "addChannel": "Создать",
+      "addChannel": "Отправить",
       "channelAdded": "Канал создан",
       "titleRemoveChannel": "Удалить канал",
       "channelWillRemoved": "Канал \"{{name}}\" будет удалён. Вы уверены?",
       "removeChannel": "Удалить",
       "channelRemoved": "Канал удалён",
       "titleRenameChannel": "Переименовать канал",
-      "renameChannel": "Переименовать",
+      "renameChannel": "Отправить",
       "channelRenamed": "Канал переименован",
       "cancel": "Отмена"
     },
@@ -52,9 +52,10 @@
       "errorUnknown": "Неизвестная ошибка",
       "error401": "Неверные имя пользователя или пароль",
       "error409": "Такой пользователь уже существует",
-      "errorNetwork": "Проблемы с сетью",
+      "errorNetwork": "Ошибка соединения",
       "titleSignIn": "Войти",
       "titleSignUp": "Регистрация",
+      "yourUserName": "Ваш ник",
       "userName": "Имя пользователя",
       "password": "Пароль",
       "confirm": "Подтвердите пароль",
@@ -62,7 +63,7 @@
       "maybeNeedSignIn": "Уже есть аккаунт?"
     },
     "api": {
-      "errorNetwork": "Проблемы с сетью",
+      "errorNetwork": "Ошибка соединения",
       "errorServer": "Проблемы с сервером"
     }
   }
